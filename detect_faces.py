@@ -14,6 +14,7 @@ def set_bounding_boxes(face_locations, person_names, faces_image):
         draw.rectangle(((left, top), (right, bottom)), outline=(255, 255, 0), width=4)
         size = int(0.07 * (right - left))
         draw.text((left, bottom), person_names[i], font=ImageFont.truetype(font="arial.ttf", size=30))
-
+#TODO: адаптировать размер линии
+#TODO: научиться дозаписывать в json
     del draw
     pil_img.save("result/result.jpg")
