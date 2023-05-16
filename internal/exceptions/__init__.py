@@ -1,0 +1,4 @@
+from internal.exceptions.already_exist_face import AlreadyExistFaceErr
+from internal.exceptions.can_not_detect_face import CanNotDetectFaceErr
+from internal.exceptions.invalid_count_of_faces import InvalidCountOfFaceFaceErr
+from internal.exceptions.face_not_found_err import FaceNotFoundErr

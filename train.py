@@ -19,7 +19,7 @@
 from face_recognition import load_image_file
 from encode_faces import get_encodings
 from detect_faces import detect_faces
-from recognize_faces import Person_data
+from recognize import Person_data
 from os.path import splitext
 import numpy as np
 import json
@@ -55,5 +55,5 @@ def get_fila_name_without_extension(path_to_file):
 
 
 if __name__ == "__main__":
-    person_name = 'gal'
+    person_name = 'ben_2'
     train(f'training_data/{person_name}.png', person_name, 'persons_data/data.json')
