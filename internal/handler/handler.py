@@ -18,9 +18,8 @@ class Handler(IHandler):
         face_embeddings, face_location = get_encodings_from_face(face_img)
         similar_face_entity = self.db.search_similar_face(face_embeddings)
         if similar_face_entity is None:
-            raise FaceNotFoundErr
+            return None, None
         (_, _, person_name) = similar_face_entity
-
         return person_name, face_location
 
     def train(self, face_img, person_name):

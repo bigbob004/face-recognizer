@@ -35,8 +35,10 @@ class FaceRecognizerServicer(face_recognizer_api_pb2_grpc.FaceRecognizerServicer
             print(exception)
             return face_recognizer_api_pb2.RecognizeFaceResponse()
         else:
-            _top, _right, _bottom, _left = face_location
-            response = face_recognizer_api_pb2.RecognizeFaceResponse(person_name=_person_name, face_location=face_recognizer_api_pb2.FaceLocation(left=_left, top=_top, right=_right, bottom=_bottom))
+            response = face_recognizer_api_pb2.RecognizeFaceResponse()
+            if face_location is not None and _person_name is not None:
+                _top, _right, _bottom, _left = face_location
+                response = face_recognizer_api_pb2.RecognizeFaceResponse(person_name=_person_name, face_location=face_recognizer_api_pb2.FaceLocation(left=_left, top=_top, right=_right, bottom=_bottom))
             context.set_code(grpc.StatusCode.OK)
             return response
 
