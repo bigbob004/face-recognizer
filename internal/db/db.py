@@ -1,23 +1,17 @@
 import psycopg2
 from pgvector.psycopg2 import register_vector
-import yaml
 from copy import copy
 
-VALID_DISTANCE = 0.6
+VALID_DISTANCE = 0.5
 #TODO константы для названия табличек
-
-def get_db_config(config_file_name="config.yaml"):
-    with open(config_file_name, 'r') as f:
-        return yaml.load(f, Loader=yaml.FullLoader)
 
 #TODO подумать: ретраи при обрывае соединения с базой
 
 
-#TODO убрать обработку исключений (обрабатывать все исключения в том числе базовый Exception в ручках grpc)
 class DB:
-    def __init__(self):
+    def __init__(self, config):
         _conn = None
-        database_config = get_db_config()
+        database_config = config
         try:
             # пытаемся подключиться к базе данных
             _conn = psycopg2.connect(**database_config)

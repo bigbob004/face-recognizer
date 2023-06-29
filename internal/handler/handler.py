@@ -9,7 +9,7 @@ def get_encodings_from_face(face_img_arr):
         raise CanNotDetectFaceErr
     elif len(face_Locations) > 1:
         raise InvalidCountOfFaceFaceErr
-    face_embeddings = face_encodings(face_img_arr, face_Locations)
+    face_embeddings = face_encodings(face_img_arr, face_Locations, num_jitters=10, model="large")
     return face_embeddings[0], face_Locations[0]
 
 

@@ -5,13 +5,18 @@ import grpc
 import face_recognizer_api_pb2_grpc
 from internal.handler.handler import Handler
 from internal.db.db import DB
-
+import yaml
 from internal.api.face_recognizer_servicer import FaceRecognizerServicer
+
+def get_db_config(config_file_name="config.yaml"):
+    with open(config_file_name, 'r') as f:
+        return yaml.load(f, Loader=yaml.FullLoader)
 
 
 def serve():
     try:
-        db = DB()
+        config = get_db_config()
+        db = DB(config)
         handler = Handler(db)
 
         server = grpc.server(futures.ThreadPoolExecutor(max_workers=4))
